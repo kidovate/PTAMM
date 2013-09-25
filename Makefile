@@ -15,7 +15,7 @@ EXTRA_CFLAGS:= -DENABLE_MODELS_GAME
 # Edit the lines below to point to any needed include and link paths
 # Or to change the compiler's optimization flags
 CC = g++
-COMPILEFLAGS = -I MY_CUSTOM_INCLUDE_PATH -D_LINUX -D_REENTRANT -Wall  -O3 -march=nocona -msse3 -fno-strict-aliasing -I/usr/include/opencv-2.3.1
+COMPILEFLAGS = -I./thirdparty/TooN/include/ -I./thirdparty/libcvd/include/ -I./thirdparty/lib3ds/lib3ds/local/include/ -I./thirdparty/gvars3/include/ -I./thirdparty/agast/include/ -D_LINUX -D_REENTRANT -Wall  -O3 -march=nocona -msse3 -fno-strict-aliasing -I/usr/include/opencv-2.3.1
 #LINKFLAGS = -L MY_CUSTOM_LINK_PATH -lGVars3 -lcvd $(3DSLIB)
 LINKFLAGS = -L MY_CUSTOM_LINK_PATH -lGVars3 -lcvd $(3DSLIB) -L/usr/local/lib -lopencv_legacy -lopencv_core -lopencv_video -lopencv_highgui
 # Edit this line to change video source
@@ -65,7 +65,10 @@ CALIB_OBJECTS=	GLWindow2.o\
 		ATANCamera.o \
 		CameraCalibrator.o
 
-All: PTAMM CameraCalibrator
+All: Deps PTAMM CameraCalibrator
+
+Deps:
+	cd thirdparty && make
 
 PTAMM: $(OBJECTS)
 	$(CC) -o PTAMM $(OBJECTS) $(LINKFLAGS)
@@ -79,7 +82,8 @@ CameraCalibrator:$(CALIB_OBJECTS)
 
 clean:
 	rm *.o
-
+distclean: clean
+	cd thirdparty && make distclean
 
 depend:
 	rm dependecies; touch dependencies
