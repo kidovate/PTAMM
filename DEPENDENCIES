@@ -1,0 +1,4 @@
+
+sudo apt-get install cvs liblapack3gf liblapack-dev libraw1394-dev libdc1394-22
+libdc1394-22-dev libtiff4 libtiff4-dev freeglut3 freeglut3-dev coriander libpng-
+dev libreadline5-dev mencoder
