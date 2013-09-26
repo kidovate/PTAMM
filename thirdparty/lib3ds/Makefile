@@ -6,14 +6,16 @@ lib3ds_download:
 	rm lib3ds-*.zip
 	-rm -rf lib3ds
 	mv lib3ds-* lib3ds
-	touch lib3ds
+	touch lib3ds_download
 
 distclean:
 	-rm -rf lib3ds
 	-rm lib3ds_built
+	-rm lib3ds_download
 	
 clean:
 	cd lib3ds && make clean
+	rm lib3ds_built
 
 lib3ds_built:
 	cd lib3ds && ./configure --prefix `pwd`/local/ && make -j8 && make install
