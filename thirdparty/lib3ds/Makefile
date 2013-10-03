@@ -19,4 +19,5 @@ clean:
 
 lib3ds_built:
 	cd lib3ds && ./configure --prefix `pwd`/local/ && make -j8 && make install
+	cd lib3ds/local/ && cp lib/*.so* ../../../../
 	touch lib3ds_built

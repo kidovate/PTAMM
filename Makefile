@@ -15,9 +15,8 @@ EXTRA_CFLAGS:= -DENABLE_MODELS_GAME
 # Edit the lines below to point to any needed include and link paths
 # Or to change the compiler's optimization flags
 CC = g++
-COMPILEFLAGS = -I./thirdparty/TooN/include/ -I./thirdparty/libcvd/include/ -I./thirdparty/lib3ds/lib3ds/local/include/ -I./thirdparty/gvars3/include/ -I./thirdparty/agast/include/ -D_LINUX -D_REENTRANT -Wall  -O3 -march=nocona -msse3 -fno-strict-aliasing -I/usr/include/opencv-2.3.1
-#LINKFLAGS = -L MY_CUSTOM_LINK_PATH -lGVars3 -lcvd $(3DSLIBLINKFLAGS = -L./thirdparty/gvars3/lib/ -L./thirdparty/libcvd/lib/ -lGVars3 -lcvd $(3DSLIB) -L/usr/local/lib -lopencv_legacy -lopencv_core -lopencv_video -lopencv_highgui
-LINKFLAGS = -L./thirdparty/libcvd/build/ -L./thirdparty/gvars3/build/ -L./thirdparty/lib3ds/lib3ds/ -lGVars3 -lcvd $(3DSLIB) -L/usr/local/lib -lopencv_legacy -lopencv_core -lopencv_video -lopencv_highgui
+COMPILEFLAGS = -I./thirdparty/TooN/include/ -I./thirdparty/libcvd/include/ -I./thirdparty/lib3ds/lib3ds/local/include/ -I./thirdparty/gvars3/include/ -I./thirdparty/agast/include/ -D_LINUX -D_REENTRANT -Wall  -O3 -march=nocona -msse3 -fno-strict-aliasing -I/usr/include/opencv2/
+LINKFLAGS = -L./thirdparty/libcvd/lib/ -L./thirdparty/gvars3/lib/ -L./thirdparty/lib3ds/lib3ds/local/lib/ -lGVars3 -lcvd $(3DSLIB) -L/usr/local/lib -lopencv_legacy -lopencv_core -lopencv_video -lopencv_highgui -llapack -lglut -lGL -lGLU -lreadline
 # VIDEOSOURCE = VideoSource_Linux_DV.o
 VIDEOSOURCE = VideoSource_Linux_OpenCV.o
 
@@ -80,7 +79,9 @@ CameraCalibrator:$(CALIB_OBJECTS)
 	$(CC) $< -o $@ -c $(COMPILEFLAGS) $(EXTRA_CFLAGS)
 
 clean:
+	-rm *.so*
 	-rm *.o
+thirdpartyclean: clean
 	-cd thirdparty && make clean
 distclean: clean
 	-cd thirdparty && make distclean

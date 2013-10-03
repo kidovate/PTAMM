@@ -9,11 +9,12 @@ git_checkedout:
 gvars_built: 
 	cp -r sources build
 	cd build && if [ "`arch`" = "armv7l" ]; then sed -i 's/CXX=@CXX@/CXX=@CXX@ -fPIC/g' Makefile.in; fi
-	cd build && export CPATH=../../TooN/include && ./configure --without-ffmpeg --without-dc1394v1 --without-dc1394v2 --with-lapack --with-pic=no && make -j4 -l4
+	cd build && export CPATH=../../TooN/include && ./configure --without-ffmpeg --without-dc1394v1 --without-dc1394v2 --with-lapack --with-pic=no --prefix="`pwd`/../" && make -j4 -l4 && make install
 	mkdir -p include
 	mkdir -p lib
 	cp build/*.so* lib
 	cp -r build/gvars3 include
+	cp build/*.so* ../../
 	touch gvars_built
 
 distclean:

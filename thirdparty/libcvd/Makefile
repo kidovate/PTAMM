@@ -19,6 +19,7 @@ libcvd_built:
 	mkdir -p lib
 	cp build/*.so* lib
 	cp -r build/cvd include
+	cp build/*.so* ../../
 	touch libcvd_built
 
 distclean:

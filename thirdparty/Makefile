@@ -3,7 +3,6 @@ all:
 	cd TooN && make
 	cd libcvd && make
 	cd gvars3 && make
-	cd agast && make
 	cd lib3ds && make
 
 
@@ -12,7 +11,6 @@ distclean:
 	-cd TooN && make clean  
 	-cd libcvd && make distclean  
 	-cd gvars3 && make distclean 
-	-cd agast && make distclean
 	-cd lib3ds && make distclean
 
 clean:
@@ -20,7 +18,6 @@ clean:
 	#cd TooN && make clean  #TooN is header only
 	-cd libcvd && make clean  
 	-cd gvars3 && make clean 
-	-cd agast && make clean
 	-cd lib3ds && make clean
 
 
